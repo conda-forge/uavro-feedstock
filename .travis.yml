@@ -8,10 +8,10 @@ osx_image: xcode6.4
 
 env:
   matrix:
-    
-    - CONDA_NPY=111  CONDA_PY=27
-    - CONDA_NPY=111  CONDA_PY=35
-    - CONDA_NPY=111  CONDA_PY=36
+    - CONFIG=osx_python2.7
+    - CONFIG=osx_python3.5
+    - CONFIG=osx_python3.6
+
   global:
     # The BINSTAR_TOKEN secure variable. This is defined canonically in conda-forge.yml.
     - secure: "o7+MnsIIayt140FT9esMhzFFX2rJ443fJZkU5gYw9Z1FMJ0SpYxqeDOjgNW/5jb0W0DnJ2j7S9R0zvbaAGA7a/nVS22rx+bAKrOQEv1r4FcDqbn7/9qACpjz4pEgAq/TUrC2JoMkRjaUD5K6XJsRcL09mMLHBdl6ntK2e4qnqu0eTn8rQy43itRLR4WYF8KcschpyZjmL20WzYbcjUVpzkOuxL7AWcgt9IdxmiDRjClBk9O2aW0ctFsYwQ3Xfpyu94gYRLL1BMfotQM4Gtv2LcisyZF8bDy1vsirEuqgfIYr4/5BMeyhZxZFwn1Z1QDaoIvaqgUu3daibFWL6FjYOe7I/N7QE4L1PGcSRZcgUqmvxYAhPnO8EfaG7fhRr0NobsIWGSXmMkiag9hgyo110P/TCwbKWQl+Lhlgh1O4qXrMauG7cWLy20dvCGNvuU+/JTyyS9vRl1gXfdQK8PYy3xLX/md0ugK37PGbP01C14WiM9hgfN3W5TAxS066dbpOK7vsBBw1eiOpVh6ufPDAPYWBjkAQPBVbmnTIHhk2lD0Y/9IGqd8tcuHm2O4IN/b5xUB32kKKDvJXSJ/JFdGt+AeCQj59VbjlTlWQgWBIGGr9QUJF3omxShAiTDcbF0cH/6qKDU7h6hTUtKjZ8GmzI4VmOk1E8mOr/NpFMAh8Skc="
@@ -20,7 +20,7 @@ env:
 before_install:
     # Fast finish the PR.
     - |
-      (curl https://raw.githubusercontent.com/conda-forge/conda-forge-build-setup-feedstock/master/recipe/ff_ci_pr_build.py | \
+      (curl https://raw.githubusercontent.com/conda-forge/conda-forge-ci-setup-feedstock/master/recipe/ff_ci_pr_build.py | \
           python - -v --ci "travis" "${TRAVIS_REPO_SLUG}" "${TRAVIS_BUILD_NUMBER}" "${TRAVIS_PULL_REQUEST}") || exit 1
 
     # Remove homebrew.
@@ -52,10 +52,10 @@ install:
       conda config --add channels defaults
       conda config --add channels conda-forge
       conda config --set show_channel_urls true
-      conda install --yes --quiet conda-forge-build-setup
+      conda install --yes --quiet conda-forge-ci-setup=1
       source run_conda_forge_build_setup
 
 script:
-  - conda build ./recipe
+  - conda build ./recipe -m ./.ci_support/${CONFIG}.yaml
 
-  - upload_or_check_non_existence ./recipe conda-forge --channel=main
+  - upload_or_check_non_existence ./recipe conda-forge --channel=main -m ./.ci_support/${CONFIG}.yaml
