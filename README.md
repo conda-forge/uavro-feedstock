@@ -14,14 +14,16 @@ Summary: Very fast avro file to dataframe reader
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/uavro-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/uavro-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/uavro-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/uavro-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/uavro-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/uavro-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/uavro-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/uavro-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/uavro-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/uavro-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/uavro-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/uavro-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/uavro/badges/version.svg)](https://anaconda.org/conda-forge/uavro)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/uavro/badges/downloads.svg)](https://anaconda.org/conda-forge/uavro)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-uavro-green.svg)](https://anaconda.org/conda-forge/uavro) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/uavro.svg)](https://anaconda.org/conda-forge/uavro) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/uavro.svg)](https://anaconda.org/conda-forge/uavro) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/uavro.svg)](https://anaconda.org/conda-forge/uavro) |
 
 Installing uavro
 ================
