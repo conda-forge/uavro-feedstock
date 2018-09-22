@@ -1,6 +1,6 @@
 {% set name = "uavro" %}
-{% set version = "0.0.3" %}
-{% set sha256 = "99ab5fc2e3789e0b2bc1badddd1f9d4c6f62ebe4a3b3bbbb976edbea9d853e92" %}
+{% set version = "0.1.2" %}
+{% set sha256 = "4c26012b9218ae07e81573958331c24a77e8964556fc768223aae4f11b647cdf" %}
 
 package:
   name: {{ name|lower }}
@@ -12,8 +12,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
   build:
@@ -23,6 +23,7 @@ requirements:
     - setuptools
     - cython
     - numpy
+    - pip
     - msinttypes  # [win]
   run:
     - python
