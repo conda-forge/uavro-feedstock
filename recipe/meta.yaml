@@ -1,18 +1,16 @@
 {% set name = "uavro" %}
 {% set version = "0.1.2" %}
-{% set sha256 = "4c26012b9218ae07e81573958331c24a77e8964556fc768223aae4f11b647cdf" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/uavro-{{ version }}.tar.gz
+  sha256: 4c26012b9218ae07e81573958331c24a77e8964556fc768223aae4f11b647cdf
 
 build:
-  number: 1003
+  number: 1004
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
@@ -20,7 +18,6 @@ requirements:
     - {{ compiler('c') }}
   host:
     - python
-    - setuptools
     - cython
     - numpy
     - pip
@@ -28,11 +25,17 @@ requirements:
   run:
     - python
     - pandas
+    - cython
     - fastparquet
+    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
     - uavro
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/martindurant/uavro
