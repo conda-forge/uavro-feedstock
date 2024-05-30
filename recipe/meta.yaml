@@ -10,12 +10,13 @@ source:
   sha256: 4c26012b9218ae07e81573958331c24a77e8964556fc768223aae4f11b647cdf
 
 build:
-  number: 1004
+  number: 1005
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
   host:
     - python
     - cython
@@ -27,7 +28,6 @@ requirements:
     - pandas
     - cython
     - fastparquet
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
